@@ -4,6 +4,7 @@ import geoip from 'geoip-lite';
 
 //URL Shortening Function
 export const ShortUrl = async (req, res) => {
+  const userId=req.userId;
   const { originalurl } = req.body;
   const shortID = shortid.generate(); // ShortId is generated
   
@@ -11,12 +12,13 @@ export const ShortUrl = async (req, res) => {
     if (!shortID) {
       return res.status(400).json({ error: 'Short ID could not be generated' });
     }
-
+    console.log(userId);
     const newLink = await Link.create({
+      userId:userId,
       originalurl: originalurl,
       shortID: shortID,
     });
-
+    console.log(newLink);
     res.json(`http://localhost:3000/${shortID}`);
   } catch (error) {
     console.error("Error creating short URL:", error);
@@ -24,7 +26,8 @@ export const ShortUrl = async (req, res) => {
   }
 };
 
-export const redirect = async (req, res) => {
+//Shortened Url redirect and analytics logging function
+export const redirect = async (req, res) => {  
   const { shortID } = req.params;
 
   try {
@@ -74,3 +77,43 @@ export const redirect = async (req, res) => {
     res.status(500).json({ error: "Error processing request" });
   }
 };
+
+//Getting all the links and its data for a particular logged in user
+export const userLinksData = async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    // Check if userId exists
+    if (!userId) {
+      return res.status(401).json({ error: "User not authorized" });
+    }
+
+    // Fetch user link data
+    const userLinkData = await Link.find({ userId });
+
+    // Check if data exists
+    if (!userLinkData || userLinkData.length === 0) {
+      return res.status(404).json({ error: "Nothing to show for the user" });
+    }
+
+    // Format the data
+    // const formattedData = userLinkData.map((link, index) => {
+    //   const totalClicks = link.analytics.reduce((sum, item) => sum + item.clicks, 0);
+    //   return {
+    //     serialNumber: index + 1,
+    //     originalUrl: link.originalurl,
+    //     shortUrl: link.shortID,
+    //     totalClicks,
+    //   };
+    
+     
+
+    // Send the response
+    res.status(200).json({ data: userLinkData });
+  } catch (error) {
+    // Catch and handle errors
+    console.error("Error fetching user links:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+

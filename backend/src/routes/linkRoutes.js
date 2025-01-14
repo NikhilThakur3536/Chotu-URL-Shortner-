@@ -1,5 +1,5 @@
 import express from "express";
-import { ShortUrl, redirect } from "../controllers/linkController.js";
+import { ShortUrl, redirect, userLinksData } from "../controllers/linkController.js";
 import useragent from "express-useragent";
 import { auth } from "../middleware/authMiddleware.js";
 
@@ -13,5 +13,8 @@ router.post("/shorten",auth, ShortUrl);
 
 // Redirection route
 router.get("/:shortID", redirect);
+
+//Getting al links for logged in user
+router.get("/links", auth, userLinksData);
 
 export default router;

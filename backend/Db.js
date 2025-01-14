@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 const Schema= mongoose.Schema;
-const ObjectId= mongoose.ObjectId;
 
 const UsersSchema= new Schema({
     email: String,
@@ -8,7 +7,7 @@ const UsersSchema= new Schema({
     username: String
 })
 const LinkSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     originalurl: { type: String, required: true },
     shortID: {type:String, required: true},
     analytics: [{

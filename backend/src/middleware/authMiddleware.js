@@ -11,4 +11,4 @@ export const auth = (req, res, next) => {
   } catch (error) {
     res.status(403).json({ message: "Incorrect credentials" });
   }
-};
+}

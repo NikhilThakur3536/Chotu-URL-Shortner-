@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export function NavBarTabs({ tittle }) {
+export function NavBarTabs({ tittle,textColor }) {
     const [hover, setHover] = useState(false);
 
     return (
@@ -10,9 +10,9 @@ export function NavBarTabs({ tittle }) {
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
-            <span className="outline-none text-white mb-1 text-lg">{tittle}</span>
+            <span className={ `outline-none mb-1 text-lg ${textColor || "text-white"}`}>{tittle}</span>
             <motion.hr
-                className="bg-red h-1 w-full origin-left"
+                className="bg-red h-1 w-full origin-left "
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: hover ? 1 : 0 }}
                 transition={{ type: "tween", duration: .5 }}

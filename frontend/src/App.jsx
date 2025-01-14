@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import {Login} from "./components/Login";
 import {SignUp} from "./components/SignUP";
 import {Home} from "./components/Home";
+import { UserAcDashboard } from "./components/UserAcDashboard";
 import './index.css'
+import { GradientAnimatedBg } from "./components/GradientAnimatedBg";
+
 
 const App = () => {
   return (
@@ -18,8 +21,14 @@ const App = () => {
         {/* Home Route */}
         <Route path="/home" element={<Home />} />
 
+        {/* User Account Dashboard Route */}
+        <Route path="/account" element={<UserAcDashboard/>}/>
+
         {/* Redirect to Login by default */}
         <Route path="*" element={<Navigate to="/signup"/>} />
+
+        {/* Gradient Animated BG */}
+        <Route path="/bg" element={<GradientAnimatedBg/>}/>
       </Routes>
     </Router>
   );
