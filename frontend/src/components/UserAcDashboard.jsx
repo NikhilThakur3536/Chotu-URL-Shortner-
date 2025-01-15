@@ -7,7 +7,7 @@ export const UserAcDashboard=()=>{
     return(
         <div className="flex flex-col items-center bg-gradient-to-r from-slate-900 to-slate-800 h-screen w-screen overflow-hidden">
             <div><NavBar/></div>
-            <div className="w-[90%] h-[90%] ml-4"><LinksTable/></div>
+            <div className="w-[90%] h-[80%] ml-4 mb-2"><LinksTable/></div>
         </div>
 )}
 

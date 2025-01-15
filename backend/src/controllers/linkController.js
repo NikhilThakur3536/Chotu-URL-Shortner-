@@ -79,7 +79,7 @@ export const redirect = async (req, res) => {
 };
 
 //Getting all the links and its data for a particular logged in user
-export const userLinkArray= async (req, res) => {
+export const userLinkArray = async (req, res) => {
   try {
     const userId = req.userId;
 
@@ -99,14 +99,28 @@ export const userLinkArray= async (req, res) => {
     // Format the data
     const formattedData = userLinkData.map((link, index) => {
       const totalClicks = link.analytics.reduce((sum, item) => sum + item.clicks, 0);
+
+      // Aggregate browser data
+      const browserAnalytics = link.analytics.reduce((acc, item) => {
+        acc[item.browser] = (acc[item.browser] || 0) + item.clicks;
+        return acc;
+      }, {});
+
+      // Aggregate device data
+      const deviceAnalytics = link.analytics.reduce((acc, item) => {
+        acc[item.device] = (acc[item.device] || 0) + item.clicks;
+        return acc;
+      }, {});
+
       return {
         serialNumber: index + 1,
         originalUrl: link.originalurl,
         shortUrl: link.shortID,
         totalClicks,
+        browserAnalytics, // e.g., { Chrome: 10, Firefox: 5 }
+        deviceAnalytics,  // e.g., { Mobile: 8, Desktop: 7 }
       };
     });
-     
 
     // Send the response
     res.status(200).json({ data: formattedData });
@@ -116,4 +130,5 @@ export const userLinkArray= async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 
