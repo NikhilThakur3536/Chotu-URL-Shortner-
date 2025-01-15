@@ -7,6 +7,7 @@ import pass from '../assets/pass.png';
 import { useNavigate } from 'react-router-dom';
 import { userSignup } from '../hooks/userSignup.jsx';
 import { userFormInput } from '../hooks/userFormInput.jsx';
+import { LeftBgSection } from './LeftBgSection.jsx';
 
 export function SignUp() {
     const navigate = useNavigate();
@@ -28,16 +29,25 @@ export function SignUp() {
         <div className="grid justify-items-center items-center h-screen overflow-hidden">
             {/* Background */}
             <div className="bg-[#020617] flex h-screen w-screen relative">
-                <GradientBG /> {/* Background for the entire page */}
+                <LeftBgSection/>
+                {/* <div className='flex justify-center items-center content-center'>
+                    <div className=' absolute left-52 blur-md transform translate-y-[20%] h-96 w-96 rounded-full bg-purple-300 z-0'></div>
+                    <div className='absolute left-0 pl-8 pb-4'>
+                        <img src={BgAnalytics}/>
+                    </div>
+                    <div className=' absolute z-10 pl-8 pb-4 left-0'>
+                        <img src={BgUrl} /> 
+                    </div>
+                </div> */}
                 
                 {/* Gradient Animated Background */}
-                <div className="absolute top-0 right-0 h-full w-1/2 z-0 ">
+                {/* <div className="absolute top-0 right-0 h-full w-1/2 z-0 ">
                     <GradientAnimatedBg />
                 </div>
-                
+                 */}
                 {/* Signup Form */}
                 <div className="absolute z-10 h-screen w-1/2 flex flex-col ml-10 right-0">
-                    <h1 className="text-6xl text-white font-extrabold font-poppins mt-28 ml-12">Sign Up</h1>
+                    <h1 className="text-6xl text-yellow-200 font-extrabold font-poppins mt-28 ml-12">Sign Up</h1>
                     <hr className="color-slate-200 w-3/4 ml-12 mt-4" />
                     <h2 className="font-poppins font-normal text-2xl text-white ml-12 mt-10">Username</h2>
                     <InputFields image={user} text="Enter Your Username" type="text" value={inputs.username} name="username" onChange={changeHandler} />
@@ -51,11 +61,11 @@ export function SignUp() {
                     </p>
                     <div className="flex ml-64 mt-8">
                         {isLoading ? (
-                            <button className="bg-gradient-to-r from-[#221aa6] to-[#f028ba] rounded-xl text-white text-2xl w-1/3 pt-2 pb-2" onClick={handleSignUp}>
+                            <button className="bg-blue-800  rounded-xl text-white text-2xl w-1/3 pt-2 pb-2 hover:bg-gradient-to-r from-[#221aa6] to-[#f028ba]" onClick={handleSignUp}>
                                 SIGNING
                             </button>
                         ) : (
-                            <button className="bg-gradient-to-r from-[#221aa6] to-[#f028ba] rounded-xl text-white text-2xl w-1/3 pt-2 pb-2" onClick={handleSignUp}>
+                            <button className="bg-blue-800  rounded-xl text-white text-2xl w-1/3 pt-2 pb-2 hover:bg-gradient-to-r from-[#221aa6] to-[#f028ba]" onClick={handleSignUp}>
                                 SIGNUP
                             </button>
                         )}

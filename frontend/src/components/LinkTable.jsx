@@ -19,16 +19,17 @@ export const LinksTable = () => {
   const clickData = [];
   const labels = [];
 
+  console.log(data);
   data.forEach((item) => {
     labels.push(item.shortUrl);
     clickData.push(item.totalClicks);
 
-    // Use the already aggregated browserAnalytics from the API
+    // Used the already aggregated browserAnalytics from the API
     Object.entries(item.browserAnalytics).forEach(([browser, count]) => {
       browserData[browser] = (browserData[browser] || 0) + count;
     });
 
-    // Use the already aggregated deviceAnalytics from the API
+    // Used the already aggregated deviceAnalytics from the API
     Object.entries(item.deviceAnalytics).forEach(([device, count]) => {
       deviceData[device] = (deviceData[device] || 0) + count;
     });
@@ -107,11 +108,11 @@ export const LinksTable = () => {
           <h3 className="text-center font-bold mb-2">Clicks by Browser</h3>
           <Pie data={browserChartData} options={pieChartOptions}/>
         </div>
-        <div className=" flex flex-col jutify-center bg-white p-4 shadow-md h-96 w-auto chart-container">
+        <div className=" flex flex-col  bg-white p-4 shadow-md h-96 w-auto chart-container">
           <h3 className="text-center font-bold mb-2">Clicks by Device</h3>
           <Pie data={deviceChartData}  options={pieChartOptions}/>
         </div>
-        <div className="flex flex-col jutify-center bg-white p-4 shadow-md  h-96 w-auto chart-container">
+        <div className="flex flex-col bg-white p-4 shadow-md  h-96 w-auto chart-container">
           <h3 className="text-center font-bold mb-2">Total Clicks per URL</h3>
           <Bar data={totalClicksChartData} options={barChartOptions}/>
         </div>

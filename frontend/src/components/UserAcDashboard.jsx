@@ -1,4 +1,3 @@
-import { DashboardNavBar } from "./DashboardNavBar";
 import {LinksTable} from "./LinkTable";
 import { NavBar } from "./NavBar";
 

@@ -26,7 +26,7 @@ const useFetchLinks = (url) => {
     };
 
     fetchData();
-  }, [url]);
+  }, []);
 
   return { data, loading, error };
 };
