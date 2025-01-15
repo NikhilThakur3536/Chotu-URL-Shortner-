@@ -15,8 +15,8 @@ const useFetchLinks = (url) => {
             token: localStorage.getItem("token"), // Add token if needed
           },
         });
-        setData(response.data); 
-        console.log(response)
+        setData(response.data.data); 
+        // console.log(response.data.data);
         setError(null);
       } catch (err) {
         setError(err.message || "An error occurred");

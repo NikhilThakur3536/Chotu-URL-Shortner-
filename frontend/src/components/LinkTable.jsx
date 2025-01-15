@@ -4,28 +4,35 @@ import useFetchLinks from "../hooks/useFetchLinks"; // Adjust the path to your h
 export const LinksTable = () => {
   const { data, loading, error } = useFetchLinks("http://localhost:3000/links");
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className="text-center text-blue-500">Loading...</p>;
+  if (error) return <p className="text-center text-red-500">Error: {error}</p>;
+
+  const headers = ["#", "Original URL", "Short URL", "Total Clicks"];
 
   return (
-    <div>
-      <h2>Links Data</h2>
-      <table border="1" style={{ width: "100%", textAlign: "left", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Original URL</th>
-            <th>Short URL</th>
-            <th>Total Clicks</th>
-          </tr>
+    <div className="container mx-auto p-4">
+      <table className="table-auto w-full border-collapse border border-gray-200">
+        <thead className="bg-gray-100">
+        <tr>
+          {headers.map((header, index) => (
+            <th key={index} className="border border-gray-300 px-4 py-2 text-left">
+              {header}
+            </th>
+          ))}
+        </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.serialNumber}</td>
-              <td>{item.originalUrl}</td>
-              <td>{item.shortUrl}</td>
-              <td>{item.totalClicks}</td>
+            <tr
+              key={index}
+              className={`${
+                index % 2 === 0 ? "bg-white" : "bg-gray-50"
+              } hover:bg-gray-100`}
+            >
+              <td className="border border-gray-300 px-4 py-2">{item.serialNumber}</td>
+              <td className="border border-gray-300 px-4 py-2">{item.originalUrl}</td>
+              <td className="border border-gray-300 px-4 py-2">{item.shortUrl}</td>
+              <td className="border border-gray-300 px-4 py-2">{item.totalClicks}</td>
             </tr>
           ))}
         </tbody>
@@ -33,4 +40,3 @@ export const LinksTable = () => {
     </div>
   );
 };
-

@@ -79,7 +79,7 @@ export const redirect = async (req, res) => {
 };
 
 //Getting all the links and its data for a particular logged in user
-export const userLinksData = async (req, res) => {
+export const userLinkArray= async (req, res) => {
   try {
     const userId = req.userId;
 
@@ -97,19 +97,19 @@ export const userLinksData = async (req, res) => {
     }
 
     // Format the data
-    // const formattedData = userLinkData.map((link, index) => {
-    //   const totalClicks = link.analytics.reduce((sum, item) => sum + item.clicks, 0);
-    //   return {
-    //     serialNumber: index + 1,
-    //     originalUrl: link.originalurl,
-    //     shortUrl: link.shortID,
-    //     totalClicks,
-    //   };
-    
+    const formattedData = userLinkData.map((link, index) => {
+      const totalClicks = link.analytics.reduce((sum, item) => sum + item.clicks, 0);
+      return {
+        serialNumber: index + 1,
+        originalUrl: link.originalurl,
+        shortUrl: link.shortID,
+        totalClicks,
+      };
+    });
      
 
     // Send the response
-    res.status(200).json({ data: userLinkData });
+    res.status(200).json({ data: formattedData });
   } catch (error) {
     // Catch and handle errors
     console.error("Error fetching user links:", error);
