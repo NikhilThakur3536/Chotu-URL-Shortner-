@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const userUrlShortner=()=>{
+export const userUrlShortner = () => {
   const shortening = async (originalurl) => {
     console.log("Original URL:", originalurl);
 
@@ -17,14 +17,25 @@ export const userUrlShortner=()=>{
         }
       );
 
-      // Log and return the response data
-      console.log("Response from server:", response);
-      return response; // Return the shortened URL data
+      // Log the response data
+      console.log("Response from server:", response.data);
+
+      // Return the shortened URL and QR code from the server response
+      return {
+        shortUrl: response.data.shortUrl,
+        qrCode: response.data.qrCode,
+      };
     } catch (error) {
-      console.error("Error shortening URL",);
-      return {response}; // Return an empty URL in case of an error
+      console.error("Error shortening URL:", error);
+
+      // Return a placeholder or error message
+      return {
+        shortUrl: null,
+        qrCode: null,
+        error: "Failed to shorten URL",
+      };
     }
   };
 
   return { shortening }; // Return the `shortening` function
-}
+};

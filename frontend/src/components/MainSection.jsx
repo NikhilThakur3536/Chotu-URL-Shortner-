@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { userFormInput } from "../hooks/userFormInput";
 import { userUrlShortner } from "../hooks/userUrlShortner";
 
-
 export function MainSection() {
   const [isFocused, setIsFocused] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -11,35 +10,39 @@ export function MainSection() {
   const { shortening } = userUrlShortner();
   const [isshort, setShort] = useState(false);
   const [shortenedUrl, setShortenedUrl] = useState("");
-
+  const [qrCode, setQrCode] = useState(""); // New state for QR code
+  const [error, setError] = useState(""); // New state for error handling
 
   const shorteningHandler = async () => {
     try {
       console.log("Sending URL to shorten:", inputs.originalurl);
-  
+
       const response = await shortening(inputs.originalurl);
-      console.log("Response from backend:", response.data);
-  
-      const {data}  = response;
-      console.log("Extracted Shortened URL:", data);
-      if (data) {
+      console.log("Response from backend:", response);
+
+      if (response.shortUrl && response.qrCode) {
         setShort(true);
-        setShortenedUrl(data);
-        
+        setShortenedUrl(response.shortUrl);
+        setQrCode(response.qrCode); // Set QR code
+        setError(""); // Clear error
+      } else {
+        throw new Error("Incomplete response from server.");
       }
     } catch (error) {
-      console.error("Error in shorteningHandler:", error.response || error.message);
+      console.error("Error in shorteningHandler:", error.message);
       setShort(false);
       setShortenedUrl("");
+      setQrCode("");
+      setError(error.message || "Failed to shorten URL.");
     }
   };
 
   return (
     <div className="flex flex-col justify-center content-center items-center gap-4">
       <div className="flex flex-col items-center gap-4">
-        <h1 className="text-4xl font-Buffalo text-white">URL SHORTNER</h1>
-        <h3 className="text-white">
-          CHOTU : Your free URL Shortner with Analytics Dashboard Keeping track of Activities on your URL
+        <h1 className="text-4xl font-Buffalo font-bold text-rose-500">URL SHORTENER</h1>
+        <h3 className="text-white font-poppins text-lg">
+          CHOTU: Your free URL Shortener with Analytics Dashboard, keeping track of activities on your URL.
         </h3>
       </div>
       <div className="flex gap-6 w-full justify-center h-16">
@@ -65,31 +68,38 @@ export function MainSection() {
           }
         />
         <motion.button
-          className="bg-[#0ea5e9] pl-8 pr-8 pt-2 pb-2 border-transparent rounded-lg text-white text-xl font-medium"
+          className="bg-blue-700 pl-8 pr-8 pt-2 pb-2 border-transparent rounded-lg text-white text-xl font-medium"
           onClick={shorteningHandler}
-          // Initial button style
           initial={{ rotateX: 0, rotateY: 0 }}
-          // Animate when pressed
           animate={
             isPressed
               ? { rotateX: 30, rotateY: 10, background: "#ef4444" }
               : { rotateX: 0, rotateY: 0 }
           }
-          // Transition effect
           transition={{ type: "spring", stiffness: 300, damping: 20, duration: 2 }}
-          // Handlers to toggle state
           onMouseDown={() => setIsPressed(true)}
           onMouseLeave={() => setIsPressed(false)}
         >
           Shorten URL
         </motion.button>
-        {/* <MotionButton onClick={shorteningHandler}/> */}
       </div>
-      {isshort && shortenedUrl && (
+      {isshort && (
         <div className="text-white mt-4">
-          <p>Shortened URL: <a href={shortenedUrl} target="_blank" rel="noopener noreferrer">{shortenedUrl}</a></p>
+          <p>
+            Shortened URL:{" "}
+            <a href={shortenedUrl} target="_blank" rel="noopener noreferrer">
+              {shortenedUrl}
+            </a>
+          </p>
+          {qrCode && (
+            <div className="mt-4">
+              <p>Scan QR Code:</p>
+              <img src={qrCode} alt="QR Code" className="mt-2 w-32 h-32" />
+            </div>
+          )}
         </div>
       )}
+      {error && <p className="text-red-500 mt-4">{error}</p>}
     </div>
   );
 }

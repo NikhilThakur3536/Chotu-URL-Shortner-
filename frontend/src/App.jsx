@@ -26,9 +26,6 @@ const App = () => {
 
         {/* Redirect to Login by default */}
         <Route path="*" element={<Navigate to="/signup"/>} />
-
-        {/* Gradient Animated BG */}
-        <Route path="/bg" element={<GradientAnimatedBg/>}/>
       </Routes>
     </Router>
   );

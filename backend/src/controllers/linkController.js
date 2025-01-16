@@ -1,25 +1,38 @@
 import shortid from "shortid";
 import { Link } from "../../Db.js";
 import geoip from 'geoip-lite';
+import QRCode from "qrcode";
 
 //URL Shortening Function
 export const ShortUrl = async (req, res) => {
-  const userId=req.userId;
+  const userId = req.userId;
   const { originalurl } = req.body;
-  const shortID = shortid.generate(); // ShortId is generated
-  
+  const shortID = shortid.generate(); // Generate a unique short ID
+  const shortUrl = `http://localhost:3000/${shortID}`;
+
   try {
     if (!shortID) {
-      return res.status(400).json({ error: 'Short ID could not be generated' });
+      return res.status(400).json({ error: "Short ID could not be generated" });
     }
-    console.log(userId);
+
+    // Generate the QR code for the shortened URL
+    const qrCodeData = await QRCode.toDataURL(shortUrl);
+
+    // Save the link and QR code data to the database
     const newLink = await Link.create({
-      userId:userId,
-      originalurl: originalurl,
-      shortID: shortID,
+      userId,
+      originalurl,
+      shortID,
+      qrCode: qrCodeData, // Save the QR code in the database
     });
+
     console.log(newLink);
-    res.json(`http://localhost:3000/${shortID}`);
+
+    // Respond with the shortened URL and QR code
+    res.status(200).json({
+      shortUrl,
+      qrCode: qrCodeData,
+    });
   } catch (error) {
     console.error("Error creating short URL:", error);
     res.status(500).json({ error: "Failed to create shortened URL" });

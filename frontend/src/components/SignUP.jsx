@@ -1,6 +1,4 @@
 import { InputFields } from './InputFields.jsx';
-import { GradientBG } from './GradientBG.jsx';
-import { GradientAnimatedBg } from '../components/GradientAnimatedBg.jsx';
 import user from '../assets/User.png';
 import email from '../assets/email.png';
 import pass from '../assets/pass.png';

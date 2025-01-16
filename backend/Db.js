@@ -10,6 +10,7 @@ const LinkSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     originalurl: { type: String, required: true },
     shortID: {type:String, required: true},
+    qrCode: { type: String },
     analytics: [{
       deviceType: String,
       browser: String,

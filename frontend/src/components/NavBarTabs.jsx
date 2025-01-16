@@ -10,7 +10,7 @@ export function NavBarTabs({ tittle,textColor }) {
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
-            <span className={ `outline-none mb-1 text-lg ${textColor || "text-white"}`}>{tittle}</span>
+            <span className={ `outline-none mb-1 text-2xl ${textColor || "text-white"}`}>{tittle}</span>
             <motion.hr
                 className="bg-red h-1 w-full origin-left "
                 initial={{ scaleX: 0 }}
