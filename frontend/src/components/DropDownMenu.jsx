@@ -26,7 +26,9 @@ export function DropDownMenu(){
                         </li>
                         <li className="flex items-center space-x-2">
                             <CiLogin size={16} color="white"/>
-                            <span>LogOut</span>
+                            <Link to="/logout">
+                                <span>LogOut</span>
+                            </Link>
                         </li>                     
                     </ul>
             </motion.div>

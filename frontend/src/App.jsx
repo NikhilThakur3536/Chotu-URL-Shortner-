@@ -5,7 +5,7 @@ import {SignUp} from "./components/SignUP";
 import {Home} from "./components/Home";
 import { UserAcDashboard } from "./components/UserAcDashboard";
 import './index.css'
-import { GradientAnimatedBg } from "./components/GradientAnimatedBg";
+import Logout from "./components/Logout";
 
 
 const App = () => {
@@ -26,6 +26,9 @@ const App = () => {
 
         {/* Redirect to Login by default */}
         <Route path="*" element={<Navigate to="/signup"/>} />
+
+        {/* Redirect to the Logout */ }
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </Router>
   );
