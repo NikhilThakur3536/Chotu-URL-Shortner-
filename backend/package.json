@@ -18,6 +18,7 @@
     "geoip-lite": "^1.4.10",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.3",
+    "qrcode": "^1.5.4",
     "shortid": "^2.2.16"
   }
 }
