@@ -104,17 +104,17 @@ export const LinksTable = () => {
       </table>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white p-4 shadow-md h-96 w-auto chart-container">
-          <h3 className="text-center font-bold mb-2">Clicks by Browser</h3>
+        <div className="bg-[#020617] p-4 shadow-md h-96 w-auto chart-container border border-slate-100 rounded-lg">
+          <h3 className="text-center text-white font-bold mb-2">Clicks by Browser</h3>
           <Pie data={browserChartData} options={pieChartOptions}/>
         </div>
-        <div className=" flex flex-col  bg-white p-4 shadow-md h-96 w-auto chart-container">
-          <h3 className="text-center font-bold mb-2">Clicks by Device</h3>
+        <div className=" flex flex-col  bg-[#020617] p-4 shadow-md h-96 w-auto chart-container border border-slate-100 rounded-lg">
+          <h3 className="text-center text-white font-bold mb-2">Clicks by Device</h3>
           <Pie data={deviceChartData}  options={pieChartOptions}/>
         </div>
-        <div className="flex flex-col bg-white p-4 shadow-md  h-96 w-auto chart-container">
-          <h3 className="text-center font-bold mb-2">Total Clicks per URL</h3>
-          <Bar data={totalClicksChartData} options={barChartOptions}/>
+        <div className="flex flex-col bg-[#020617] p-4 shadow-md  h-96 w-auto chart-container border border-slate-100 rounded-lg">
+          <h3 className="text-center text-white font-bold mb-2">Total Clicks per URL</h3>
+          <Bar  data={totalClicksChartData} options={barChartOptions}/>
         </div>
       </div>
     </div>
