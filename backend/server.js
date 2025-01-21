@@ -16,7 +16,7 @@ app.use(express.json());
 
 // CORS configuration
 const corsOptions = {
-  origin: "https://chotu-url-shortner-fuvd.vercel.app", // Frontend URL
+  origin: "http://chotu-url-shortner-fuvd.vercel.app/", // Frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow cookies if needed
