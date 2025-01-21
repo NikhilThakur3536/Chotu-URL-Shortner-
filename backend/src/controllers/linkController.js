@@ -26,7 +26,7 @@ export const ShortUrl = async (req, res) => {
       qrCode: qrCodeData, // Save the QR code in the database
     });
 
-    console.log(newLink);
+    // console.log(newLink);
 
     // Respond with the shortened URL and QR code
     res.status(200).json({
@@ -54,7 +54,7 @@ export const redirect = async (req, res) => {
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress || "Unknown";
     const location = geoip.lookup(ip) || { country: "Unknown" };
     
-    console.log({ device, browser, ip, location });
+    // console.log({ device, browser, ip, location });
 
     // Increment the clicks for the existing analytics entry or create a new one
     const analyticsIndex = link.analytics.findIndex(
@@ -68,7 +68,7 @@ export const redirect = async (req, res) => {
       // Increment the clicks for the existing analytics entry
       link.analytics[analyticsIndex].clicks += 1;
       link.analytics[analyticsIndex].timestamp = new Date();
-      console.log(link.analytics)
+      // console.log(link.analytics)
     } else {
       // Push new analytics entry if no matching entry is found
       const analytics = {
@@ -78,7 +78,7 @@ export const redirect = async (req, res) => {
         country: location.country,
         timestamp: new Date(),
       };
-      console.log(analytics)
+      // console.log(analytics)
       link.analytics.push(analytics);
     }
 

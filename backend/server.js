@@ -1,11 +1,15 @@
   import express from "express";
-  import mongoose from "mongoose";
+  import mongoose, { mongo } from "mongoose";
   import cors from "cors";
   import useragent from "express-useragent";
   import authRoutes from "./src/routes/authRoutes.js";
   import linkRoutes from "./src/routes/linkRoutes.js";
+  import dotenv from "dotenv"; // Import dotenv
+
+ dotenv.config(); // Load .env file
 
   const app = express();
+  const mongoUrl = process.env.MONGO_URL;
 
   // Middleware
   app.use(express.json());
@@ -17,8 +21,7 @@
   app.use(useragent.express());
 
   // Connect to MongoDB
-  mongoose.connect("mongodb+srv://new:RH0yK5z8c1NpE7b7@cluster0.x0drt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-
+  mongoose.connect(mongoUrl)
   // Routes
   app.use("/auth", authRoutes);
   app.use("/", linkRoutes);

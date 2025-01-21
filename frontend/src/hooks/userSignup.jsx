@@ -11,7 +11,7 @@ export const useSignup = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(`${authApiUrl}/signup`, { email, password, username });
-      console.log("Sign Up successful:", response.data);
+      // console.log("Sign Up successful:", response.data);
       setIsLoading(false);
 
       // Return data (e.g., user info or token)

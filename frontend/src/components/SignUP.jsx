@@ -16,7 +16,7 @@ export function SignUp() {
         try {
             console.log("Inputs before signup:", inputs);
             const userData = await signup(inputs.email, inputs.password, inputs.username);
-            console.log('User data after signup:', JSON.stringify(userData));
+            // console.log('User data after signup:', JSON.stringify(userData));
             navigate('/login'); // Redirect to login page after successful signup
         } catch (error) {
             console.error('Sign Up failed:', error);

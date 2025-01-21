@@ -15,9 +15,9 @@ export function Login(){
     
     const handleLogin= async()=>{
         try{
-            console.log(inputs);
+            // console.log(inputs);
             const token= await login(inputs.email,inputs.password)
-            console.log(token);
+            // console.log(token);
             localStorage.setItem("token", token);
             if (token) {
                 localStorage.setItem("token", token);

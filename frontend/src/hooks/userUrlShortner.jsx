@@ -3,11 +3,11 @@ import axios from "axios";
 export const userUrlShortner = () => {
   const shortening = async (originalurl) => {
     console.log("Original URL:", originalurl);
-
+    const apiUrl = import.meta.env.VITE_API_URL;
     try {
       // Axios POST request to your backend
       const response = await axios.post(
-        "http://localhost:3000/shorten",
+        `${apiUrl}/shorten`,
         { originalurl },
         {
           headers: {
@@ -18,7 +18,7 @@ export const userUrlShortner = () => {
       );
 
       // Log the response data
-      console.log("Response from server:", response.data);
+      // console.log("Response from server:", response.data);
 
       // Return the shortened URL and QR code from the server response
       return {

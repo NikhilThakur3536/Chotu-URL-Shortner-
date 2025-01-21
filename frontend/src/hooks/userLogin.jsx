@@ -11,7 +11,7 @@ export function useUserLogin() {
     setIsLoading(true);
     try {
       const response = await axios.post(`${authApiUrl}/login`, { email, password });
-      console.log(response.data);
+      // console.log(response.data);
       setIsLoading(false);
 
       // Extract token from response
