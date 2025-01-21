@@ -14,17 +14,17 @@ const mongoUrl = process.env.MONGO_URL;
 // Middleware
 app.use(express.json());
 
-// CORS configuration
-const corsOptions = {
-  origin: "http://chotu-url-shortner-fuvd.vercel.app/", // Frontend URL
-  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, // Allow cookies if needed
-};
-app.use(cors(corsOptions));
+// // CORS configuration
+// const corsOptions = {
+//   origin: "http://chotu-url-shortner-fuvd.vercel.app/", // Frontend URL
+//   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true, // Allow cookies if needed
+// };
+app.use(cors());
 
 // Handle preflight (OPTIONS) requests
-app.options("*", cors(corsOptions));
+// app.options("*", cors(corsOptions));
 
 // User-agent middleware
 app.use(useragent.express());
