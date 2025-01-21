@@ -14,7 +14,7 @@
   // Middleware
   app.use(express.json());
   app.use(cors({
-      origin: "http://localhost:5173", // Frontend URL
+      origin: "https://chotu-url-shortner-fuvd.vercel.app", // Frontend URL
       methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
       credentials: true, // Allow cookies if needed
     }));
