@@ -4,12 +4,12 @@ import { InputFields } from './InputFields';
 import { FeatureBoardBG } from './FeatureBoard';
 import { useNavigate } from 'react-router-dom';
 import { userFormInput } from '../hooks/userFormInput';
-import { userLogin } from '../hooks/userLogin';
+import { useUserLogin} from '../hooks/userLogin';
 import { LoginLeftSection } from './LoginLeftSection';
 
 export function Login(){
     const navigate=useNavigate();
-    const {login}= userLogin();
+    const {login}= useUserLogin();
     const {inputs,changeHandler}= userFormInput({email:"", password:""})
     
     

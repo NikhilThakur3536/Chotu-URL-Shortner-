@@ -7,7 +7,8 @@ import { ChartOptions } from "./ChartOptions";
 ChartJS.register(BarElement, ArcElement, Tooltip, Legend, CategoryScale, LinearScale);
 
 export const LinksTable = () => {
-  const { data, loading, error } = useFetchLinks("http://localhost:3000/links");
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const { data, loading, error } = useFetchLinks(`${apiUrl}/links`);
   const { pieChartOptions, barChartOptions } = ChartOptions();
 
   if (loading) return <p className="text-center text-blue-500">Loading...</p>;

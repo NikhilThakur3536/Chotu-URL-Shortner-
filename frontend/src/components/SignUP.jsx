@@ -3,13 +3,13 @@ import user from '../assets/User.png';
 import email from '../assets/email.png';
 import pass from '../assets/pass.png';
 import { useNavigate } from 'react-router-dom';
-import { userSignup } from '../hooks/userSignup.jsx';
+import { useSignup } from '../hooks/userSignup.jsx';
 import { userFormInput } from '../hooks/userFormInput.jsx';
 import { LeftBgSection } from './LeftBgSection.jsx';
 
 export function SignUp() {
     const navigate = useNavigate();
-    const { signup, isLoading } = userSignup();
+    const { signup, isLoading } = useSignup();
     const { inputs, changeHandler } = userFormInput({ email: "", password: "", username: "" });
 
     const handleSignUp = async () => {
