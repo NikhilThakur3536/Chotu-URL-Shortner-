@@ -16,6 +16,7 @@
   app.use(cors({
       origin: "https://chotu-url-shortner-fuvd.vercel.app/", // Frontend URL
       methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+      allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true, // Allow cookies if needed
     }));
   app.use(useragent.express());
