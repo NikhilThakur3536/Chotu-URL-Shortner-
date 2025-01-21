@@ -39,7 +39,7 @@ app.use("/auth", authRoutes);
 app.use("/", linkRoutes);
 
 // Server
-const PORT = 3000;
+const PORT = 3000;//hyyy
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
