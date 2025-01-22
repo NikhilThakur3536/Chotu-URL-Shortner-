@@ -9,7 +9,7 @@ export const ChartOptions = () => {
             font: {
               size: 14, // Font size for the legend labels
             },
-            color: "#000", // Legend label color
+            color: "#e2e8f0", // Legend label color
           },
         },
         tooltip: {
