@@ -8,7 +8,7 @@ export const ShortUrl = async (req, res) => {
   const userId = req.userId;
   const { originalurl } = req.body;
   const shortID = shortid.generate(); // Generate a unique short ID
-  const shortUrl = `http://localhost:3000/${shortID}`;
+  const shortUrl = `https://chotu-url-shortner.onrender.com/${shortID}`;
 
   try {
     if (!shortID) {
